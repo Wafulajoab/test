@@ -37,22 +37,10 @@ if ($result->num_rows > 0) {
         echo "<h5 class='card-title' style='font-size: 20px; font-weight: bold; margin-bottom: 10px; text-align: center;'>$user_name</h5>";
         echo "<p class='card-text' style='font-size: 16px; margin-bottom: 10px; text-align: center;'>Position: $applied_position</p>";
         echo "<p class='card-text' style='font-size: 16px; margin-bottom: 10px; text-align: center;'>Email: $email</p>";
-
-        // Display the current status in a form
-        echo "<form method='POST' action='update_status.php' class='text-center'>";
-        echo "<label for='status'>Application Status:</label>";
-        echo "<select name='status' id='status' class='form-select' required>";
-        echo "<option value='Pending'" . ($status == 'Pending' ? ' selected' : '') . ">Pending</option>";
-        echo "<option value='Approved'" . ($status == 'Approved' ? ' selected' : '') . ">Approved</option>";
-        echo "<option value='Rejected'" . ($status == 'Rejected' ? ' selected' : '') . ">Rejected</option>";
-        echo "</select>";
-
-        // Hidden field to pass user_name to update the correct record
-        echo "<input type='hidden' name='user_name' value='$user_name'>";
-
-        // Submit button to update the status
-        echo "<button type='submit' class='btn btn-primary mt-3'>Update Status</button>";
-        echo "</form>";
+        
+        // Display the current status
+        echo "<p class='card-text' style='font-size: 16px; margin-bottom: 10px; text-align: center;'>Status: $status</p>";
+        
         echo "</div>";
     }
 } else {

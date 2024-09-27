@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="email" id="email" name="email" required><br>
 
         <label for="phone">Phone Number:</label><br>
-        <input type="tel" id="phone" name="phone" required><br>
+        <input type="text" name="phone" maxlength="10" pattern="\d{10}" title="Phone number must be exactly 10 digits" required><br>
 
         <label for="position">Applied Position:</label><br>
         <input type="text" id="position" name="position" required><br>

@@ -65,7 +65,6 @@
 <body>
     
 <?php
-require 'vendor/autoload.php'; // Include Composer's autoloader for PHPMailer
 // Include the database connection script
 require_once 'connect.php';
 
@@ -89,42 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_stmt_execute($stmt)) {
         echo "<p>Attachment submitted successfully!</p>";
 
-        // Retrieve all user emails
-        $email_query = "SELECT email FROM users";
-        $result = mysqli_query($conn, $email_query);
-
-        // Check if there are any users
-        if (mysqli_num_rows($result) > 0) {
-            // Loop through each user and send an email notification
-            while ($row = mysqli_fetch_assoc($result)) {
-                $to_email = $row['email'];
-
-                // Send email using PHPMailer
-                $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-                try {
-                    //Server settings
-                    $mail->isSMTP();
-                    $mail->Host = 'smtp.elasticemail.com'; // SMTP server
-                    $mail->SMTPAuth = true;
-                    $mail->Username = 'bensonwambuadavid@gmail.com'; // SMTP username
-                    $mail->Password = 'B46F1AA94A74C24308098C3819FC7189C5C8'; // SMTP password
-                    $mail->SMTPSecure = 'tls'; // Enable TLS encryption
-                    $mail->Port = 2525; // TCP port to connect to
-
-                    //Recipients
-                    $mail->setFrom('bensonwambuadavid@gmail.com', 'Benson ');
-                    $mail->addAddress($to_email); // Add a recipient
-
-                    // Content
-                    $mail->isHTML(true); // Set email format to HTML
-                    $mail->Subject = 'New Attachment Posted';
-                    $mail->Body = "A new attachment titled '{$title}' has been posted. Check it out now!";
-                    $mail->send();
-                } catch (Exception $e) {
-                    echo "Email could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                }
-            }
-        }
         // Redirect to manage_attachments.php
         header("Location: manage_attachments.php");
         exit(); // Ensure script execution stops after redirection
@@ -138,8 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
-    
     <form id="attachmentForm" action="attachments.php" method="POST">
         <h1>Add New Attachment</h1>
         <label for="title">Attachment Title:</label><br>

@@ -110,7 +110,7 @@
             font-size: 20px;
         }
         .form-content h2{
-            text align: center;
+            text-align: center;
         }
 
         /* Style for sign up button */
@@ -131,7 +131,7 @@
 </head>
 <body>
     <div class="form-popup">
-        <?php
+    <?php
 // Start the session to access session variables
 session_start();
 
@@ -161,25 +161,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $county = $_POST['county'];
     $nationality = $_POST['nationality'];
 
-    $sql = "INSERT INTO users (user_id, fullname, email, password, phone, id_no, gender, dob, county, nationality) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssssss", $user_id, $fullname, $email, $password, $phone, $id_no, $gender, $dob, $county, $nationality);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Registration successful!');</script>";
-        // Redirect to login page after successful registration
-        header("Location: login.php");
-        exit;
+    // Validate phone number (exactly 10 digits) and ID number (exactly 6 digits)
+    if (!preg_match('/^\d{10}$/', $phone)) {
+        echo "<script>alert('Phone number must be exactly 10 digits.');</script>";
+    } elseif (!preg_match('/^\d{6}$/', $id_no)) {
+        echo "<script>alert('ID number must be exactly 6 digits.');</script>";
     } else {
-        echo "Error: " . $stmt->error;
-    }
+        // If validation passes, insert into database
+        $sql = "INSERT INTO users (user_id, fullname, email, password, phone, id_no, gender, dob, county, nationality) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssssssss", $user_id, $fullname, $email, $password, $phone, $id_no, $gender, $dob, $county, $nationality);
 
-    $stmt->close();
-    $conn->close();
+        if ($stmt->execute()) {
+            echo "<script>alert('Registration successful!');</script>";
+            // Redirect to login page after successful registration
+            header("Location: login.php");
+            exit;
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
 }
 ?>
-
-        
+       
 
 <span class="close-btn material-symbols-rounded">&#x2716;</span>
 
@@ -201,11 +208,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label>Create password</label>
                 </div>
                 <div class="input-field">
-                    <input type="text" name="phone" required>
+                <input type="text" name="phone" maxlength="10" pattern="\d{10}" title="Phone number must be exactly 10 digits" required>
+
                     <label>Phone no</label>
                 </div>
                 <div class="input-field">
-                    <input type="text" name="id_no" required>
+                <input type="text" name="id_no" maxlength="6" pattern="\d{6}" title="ID number must be exactly 6 digits" required>
+
                     <label>Id No</label>
                 </div>
                 <div class="input-field">
