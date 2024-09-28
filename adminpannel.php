@@ -106,6 +106,12 @@ $admin_name = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : '';
 
         <div class="col-md-3">
             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                <a href="approve_payment.php" class="btn btn-warning">Premium Approval</a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                 <a href="attaches_approved.php" class="btn btn-danger">Approved Attaches</a>
             </div>
         </div>

@@ -1,60 +1,54 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Include the database connection script
-    require_once 'connect.php';
-    
-    // Prepare and bind SQL statement to insert data into the database
-    $sql = "INSERT INTO Applications (user_name, email, phone, applied_position, date_applied, certificates, resume) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $sql);
-    
-    // Check if statement preparation was successful
-    if ($stmt) {
-        // Bind parameters
-        mysqli_stmt_bind_param($stmt, "sssssss", $user_name, $email, $phone, $applied_position, $date_applied, $certificates_path, $resume_path);
-        
-        // Set parameters
-        $user_name = $_POST['userName'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $applied_position = $_POST['position'];
-        $date_applied = $_POST['date'];
-        
-        // Handle file uploads
-        $target_dir = "uploads/";
-        $certificates_paths = [];
-
-        // Handle multiple certificate files
-        foreach ($_FILES["certificates"]["tmp_name"] as $index => $tmp_name) {
-            $certificate_path = $target_dir . basename($_FILES["certificates"]["name"][$index]);
-
-            if (move_uploaded_file($tmp_name, $certificate_path)) {
-                $certificates_paths[] = $certificate_path;
-            } else {
-                echo "Error uploading certificate file.";
-            }
-        }
-
-        $resume_path = $target_dir . basename($_FILES["resume"]["name"]);
-
-        if (move_uploaded_file($_FILES["resume"]["tmp_name"], $resume_path)) {
-            if (mysqli_stmt_execute($stmt)) {
-                header("Location: fetch_jobs.php");
-                exit;
-            } else {
-                echo "Error submitting application: " . mysqli_stmt_error($stmt);
-            }
-        } else {
-            echo "Error uploading resume file.";
-        }
-
-        mysqli_stmt_close($stmt);
-    } else {
-        echo "Error preparing statement: " . mysqli_error($conn);
-    }
-
-    mysqli_close($conn);
+// Check if the user is logged in and retrieve their details
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: login.php");
+    exit;
 }
+
+require_once 'connect.php';
+
+$fullname = $_SESSION['fullname'];
+
+// Fetch the current user's job application count and premium status
+$sql = "SELECT application_count, is_premium FROM users WHERE fullname = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $fullname);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows == 1) {
+    $user = $result->fetch_assoc();
+    $applicationCount = $user['application_count'];
+    $isPremium = $user['is_premium'];
+
+    // Check if the user is premium or has less than 2 applications
+    if ($applicationCount < 2 || $isPremium) {
+        // Allow the user to apply for a job
+        // Increment the application count
+        $newCount = $applicationCount + 1;
+        $updateSQL = "UPDATE users SET application_count = ? WHERE fullname = ?";
+        $updateStmt = $conn->prepare($updateSQL);
+        $updateStmt->bind_param("is", $newCount, $fullname);
+        $updateStmt->execute();
+
+        // Job application logic here (e.g., store job application in the database)
+        echo "You have successfully applied for the job!";
+
+    } elseif ($applicationCount >= 2 && !$isPremium) {
+        // Prompt the user to pay KSH 500
+        echo "<p>You have used your 2 free applications. To apply for more jobs, please pay KSH 500 for premium access.</p>";
+        echo "<a href='pay_premium.php' class='btn btn-primary'>Pay KSH 500 for Premium</a>";
+    }
+} else {
+    echo "User details not found.";
+}
+
+// Close statement and connection
+$stmt->close();
+$conn->close();
 ?>
+
 
 <!-- Form HTML -->
 <div class="container">

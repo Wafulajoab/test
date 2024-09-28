@@ -7,135 +7,167 @@
     <!-- Google Fonts Link For Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
     <style>
-        /* CSS styles here */
-        body {
-            background-color: #e0f7fa; /* Light cyan background */
-            font-family: Arial, sans-serif; /* Changed font for better readability */
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh; /* Full viewport height */
-            padding: 20px; /* Added padding */
-        }
+     /* style.css */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #6d5bba 0%, #8d58bf 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        .form-popup {
-            width: 400px;
-            max-width: 90%; /* Responsive max width */
-            display: flex;
-            flex-direction: column; /* Changed to column for better layout */
-            background-color: #ffffff; /* White background for form */
-            padding: 20px;
-            border: 2px solid #0d0808;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Soft shadow for a polished look */
-            position: relative; /* For close button positioning */
-        }
+.form-popup {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slideIn 0.6s ease-in-out;
+}
 
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            color: #888;
-            font-size: 20px;
-        }
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .form-content h2 {
-            text-align: center; /* Center align the heading */
-            margin-bottom: 20px; /* Space below heading */
-            color: #333; /* Darker heading color */
-        }
+.form-content h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #333;
+    font-weight: 600;
+}
 
-        .input-field {
-            margin-bottom: 20px;
-            position: relative;
-        }
+.input-field {
+    margin-bottom: 20px;
+    position: relative;
+}
 
-        .input-field input {
-            width: calc(100% - 20px);
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            transition: border-color 0.3s; /* Transition for focus effect */
-        }
+.input-field label {
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
 
-        .input-field input:focus {
-            border-color: #d51414; /* Change border color on focus */
-            outline: none; /* Remove outline */
-        }
+.input-field input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
 
-        .input-field label {
-            position: absolute;
-            top: 50%;
-            left: 10px;
-            transform: translateY(-50%);
-            font-size: 16px;
-            color: #888;
-            transition: 0.3s;
-            pointer-events: none;
-            background-color: #ffffff; /* Ensure label background matches form */
-            padding: 0 5px;
-        }
+.input-field input:focus {
+    border-color: #6d5bba;
+    outline: none;
+}
 
-        .input-field input:focus + label,
-        .input-field input:valid + label {
-            top: 0;
-            font-size: 12px;
-            color: #d51414; /* Change label color on focus */
-        }
+.button-container {
+    text-align: center;
+    margin-top: 10px;
+}
 
-        .button-container {
-            text-align: center;
-        }
+.button-container button {
+    width: 100%;
+    background-color: #6d5bba;
+    color: #fff;
+    border: none;
+    padding: 12px 0;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
 
-        .form-popup .bottom-link {
-            text-align: center; /* Center align bottom link */
-            margin-top: 20px;
-            font-size: 14px; /* Slightly smaller font size */
-        }
+.button-container button:hover {
+    background-color: #5a4b9f;
+}
 
-        .form-popup .bottom-link a {
-            color: #d51414;
-            text-decoration: none;
-            margin-top: 10px;
-        }
+.bottom-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
 
-        .form-popup .bottom-link a:hover {
-            color: #3008e0; /* Change hover color */
-        }
+.bottom-link a {
+    color: #6d5bba;
+    text-decoration: none;
+    font-weight: 500;
+}
 
-        /* Style for sign up button */
-        .form-content button[type="submit"] {
-            background-color: #d51414;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%; /* Full width button */
-            font-size: 16px; /* Button text size */
-        }
+.bottom-link a:hover {
+    text-decoration: underline;
+}
 
-        .form-content button[type="submit"]:hover {
-            background-color: #3008e0; /* Darker color on hover */
-        }
+.error-message {
+    color: #d9534f;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
 
-        /* Responsive Styling */
-        @media (max-width: 500px) {
-            .form-popup {
-                width: 90%; /* Full width on small screens */
-            }
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #888;
+    transition: color 0.3s ease;
+}
 
-            .input-field input {
-                font-size: 14px; /* Smaller input font size */
-            }
-        }
+.close-btn:hover {
+    color: #444;
+}
+
+
+/* Styling for the Submit button in form */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #6d5bba;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #5a4b9f;
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+button[type="submit"]:active {
+    transform: translateY(0); /* Button comes back down when clicked */
+}
+
+button[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(109, 91, 186, 0.7); /* Glowing effect on focus */
+}
+
+
     </style>
 </head>
 <body>
+    
     <div class="form-popup">
     <?php
     require_once 'connect.php';
@@ -188,7 +220,11 @@
                         <a href="#" class="option" style="text-decoration: none; color: #d51414;">Terms & Conditions</a>
                     </label>
                 </div>
-                <button type="submit" name="submit">Sign Up as Admin</button>
+
+                <br>
+                <button type="submit" name="submit">Sign Up as Admin</button> 
+                
+    
             </form>
             <div class="bottom-link">
                 Already have an admin account? 
