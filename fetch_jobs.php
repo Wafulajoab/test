@@ -134,6 +134,7 @@ session_start();
     </div>
  </div>
 </div>
+
 <?php  
 
 // Include the database connection script

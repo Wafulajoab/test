@@ -1,0 +1,153 @@
+<?php
+session_start();
+
+// Check if the organization is logged in, if not, redirect to login page
+if (!isset($_SESSION['org_id'])) {
+    header("Location: login_organisation.php");
+    exit();
+}
+
+// Get organization details from session
+$org_name = $_SESSION['org_name'];
+$org_id = $_SESSION['org_id'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organisation Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .buttons a {
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            width: 200px;
+        }
+
+        .buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        .logout {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .logout a {
+            padding: 10px 20px;
+            background-color: #FF0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .logout a:hover {
+            background-color: #b30000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Welcome to Your Dashboard, <?php echo $org_name; ?></h1>
+</div>
+
+<div class="container">
+    <div class="welcome-message">
+        <p>Welcome back, <strong><?php echo $org_name; ?></strong>! Here, you can manage your organization, view applicants, and much more.</p>
+    </div>
+
+    <!-- Section for managing organisation data -->
+    <div class="section">
+        <h2>Manage Organization</h2>
+        <p>Update your organization's details, description, and view your profile.</p>
+        <div class="buttons">
+            <a href="edit_organisation.php">Edit Profile</a>
+            <a href="view_organisation_profile.php">View Profile</a>
+        </div>
+    </div>
+
+    <!-- Section for viewing applicants -->
+    <div class="section">
+        <h2>View Applicants</h2>
+        <p>Check the list of applicants for the job postings your organization has created.</p>
+        <div class="buttons">
+            <a href="view_applicants.php">View Applicants</a>
+            <a href="create_attachment.php">Post New Attachment</a> <!-- Updated button -->
+        </div>
+    </div>
+
+    <!-- Section for viewing posted jobs -->
+    <div class="section">
+        <h2>View Posted Jobs</h2>
+        <p>View and manage the jobs your organization has posted.</p>
+        <div class="buttons">
+            <a href="view_posted_jobs.php">View Posted Jobs</a>
+            <a href="create_job.php">Post New Job</a>
+        </div>
+    </div>
+
+    <!-- Logout button -->
+    <div class="logout">
+        <a href="logout.php">Logout</a>
+    </div>
+</div>
+</body>
+</html>

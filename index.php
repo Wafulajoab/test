@@ -62,6 +62,7 @@
       display: flex;
       justify-content: center;
       gap: 15px;
+      flex-wrap: wrap; /* Allows the buttons to wrap to a new line if needed */
     }
 
     .buttons button {
@@ -100,6 +101,9 @@
       <div class="buttons">
         <button onclick="location.href='register.php'">Register as user</button>
         <button onclick="location.href='login.php'">Login as user</button>
+        <br>
+        <button onclick="location.href='register_organisation.php'">Register as Organisation</button>
+        <button onclick="location.href='login_organisation.php'">Login as Organisation</button>
       </div>
     </div>
   </div>

@@ -37,8 +37,8 @@ if ($result->num_rows == 1) {
 
     } elseif ($applicationCount >= 2 && !$isPremium) {
         // Prompt the user to pay KSH 500
-        echo "<p>You have used your 2 free applications. To apply for more jobs, please pay KSH 500 for premium access.</p>";
-        echo "<a href='pay_premium.php' class='btn btn-primary'>Pay KSH 500 for Premium</a>";
+        echo "";
+        echo "";
     }
 } else {
     echo "User details not found.";
