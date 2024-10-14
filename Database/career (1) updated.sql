@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2024 at 08:12 PM
+-- Generation Time: Oct 15, 2024 at 12:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -56,7 +56,8 @@ INSERT INTO `admins` (`admin_id`, `fullname`, `email`, `password`) VALUES
 (30, 'Waff', 'waff@gmail.com', '$2y$10$NrMIXw77uIN3Ix92XmqJSeZf8TyIoYv7utjwGQGgJM2erKK0qu4c.'),
 (31, 'Jeff', 'jeff@gmail.com', '$2y$10$tB2A1pS6ddHXSKLwquTuGuR4sqNLxamWvEC8z2lRZeNNImzuFKWf2'),
 (32, 'Faith', 'faith@gmail.com', '$2y$10$qx7c/E6l88MGQidvFrOy7.SRPU3DnZGt62JBuZWUJjlSCUEF6aW6O'),
-(34, 'Josh', 'jos@gmail.com', '$2y$10$Sta25LTvoEfd15nfSxdBoejjBKYPtsfdoNp2Sgp3VbKav0HKxMPQS');
+(34, 'Josh', 'jos@gmail.com', '$2y$10$Sta25LTvoEfd15nfSxdBoejjBKYPtsfdoNp2Sgp3VbKav0HKxMPQS'),
+(35, 'Naloj', 'na@gmail.com', '$2y$10$8d19bRo8CncN1Prauoxb0e4tireGEkr2kTkpJy1j2HkAdSYePjWzW');
 
 -- --------------------------------------------------------
 
@@ -222,7 +223,7 @@ INSERT INTO `attachment_applications` (`id`, `full_name`, `date_of_birth`, `id_n
 (4, 'David Wambua', '2018-02-07', '40123456', 'Male', 'david@gmail.com', '0712456290', 'Meru', 'Degree in Data Science', 'uploads/CHAPTER TWO.docx', 'uploads/Apology letter.docx', 'uploads/Apology letter.docx', 'uploads/Apology letter.docx', 'rejected'),
 (5, 'David Wambua', '2019-02-06', '40123456', 'Male', 'david@gmail.com', '0712456290', 'Meru', 'Degree in Data Science', 'uploads/CHAPTER TWO.docx', 'uploads/Apology letter.docx', 'uploads/BENPROJECT.docx', 'uploads/my proposal.docx', 'approved'),
 (6, 'Albanus Kioko', '2005-06-08', '40123456', 'Male', 'kioko@gmail.com', '0712456290', 'Meru', 'Degree in Computer Science', 'uploads/Apology letter.docx', 'uploads/BENPROJECT.docx', 'uploads/my proposal.docx', 'uploads/BENSON WAMBUA DAVID.docx', 'approved'),
-(7, 'JOAB WAFULA MONGOMA', '2024-09-26', '38813973', 'Male', 'joabfx22@gmail.com', '0793594656', 'Nyerii', 'degree', 'uploads/Gretsa letter.pdf', 'uploads/joabofficialletter.pdf', 'uploads/Gretsa letter.pdf', 'uploads/KMTC.pdf', 'pending'),
+(7, 'JOAB WAFULA MONGOMA', '2024-09-26', '38813973', 'Male', 'joabfx22@gmail.com', '0793594656', 'Nyerii', 'degree', 'uploads/Gretsa letter.pdf', 'uploads/joabofficialletter.pdf', 'uploads/Gretsa letter.pdf', 'uploads/KMTC.pdf', 'approved'),
 (8, 'JOAB WAFULA MONGOMA', '2024-09-26', '38813973', 'Male', 'joabfx22@gmail.com', '0793594656', 'Nyerii', 'degree', 'uploads/Joab letter official.pdf', 'uploads/joabofficialletter.pdf', 'uploads/KMTC.pdf', 'uploads/MKU letter.pdf', 'approved'),
 (9, 'JOAB WAFULA MONGOMA', '1998-06-03', '38813973', 'Male', 'joabfx22@gmail.com', '0793594656', 'Nyerii', 'degree', 'uploads/OFFICIAL Joab ATTACHMENT REPORT.pdf', 'uploads/MKU letter.pdf', 'uploads/Thika Technical Training Institute.pdf', 'uploads/QUOTATION Official.pdf', 'approved');
 
@@ -298,7 +299,8 @@ INSERT INTO `contact_form` (`id`, `name`, `email`, `message`, `reply`, `submissi
 (3, 'BEN', 'wbenson681@gmail.com', 'hello', 'hello,, you good?', '2024-04-21 11:43:16'),
 (4, 'Joab Wafula', 'joabfx22@gmail.com', 'hello', 'yooh', '2024-06-09 04:09:02'),
 (5, 'JoabWaff', 'joabfx22@gmail.com', 'hello sir', 'hello too', '2024-09-26 10:24:56'),
-(6, 'JoabWaff', 'joabfx22@gmail.com', 'hello', NULL, '2024-09-27 08:46:05');
+(6, 'JoabWaff', 'joabfx22@gmail.com', 'hello', NULL, '2024-09-27 08:46:05'),
+(7, 'JoabNalo', 'jo@gmail.com', 'hello sir is there any vacant job i can do', 'yes there is an opportunity', '2024-09-29 14:17:39');
 
 -- --------------------------------------------------------
 
@@ -346,7 +348,8 @@ INSERT INTO `interviews` (`id`, `job_title`, `interview_date`, `interview_time`)
 (3, 'web designers', '2024-10-10', '17:00:00'),
 (4, 'web designers', '2024-10-10', '17:00:00'),
 (5, 'web designers', '2024-10-10', '17:00:00'),
-(6, 'android developers', '2024-09-26', '13:10:00');
+(6, 'android developers', '2024-09-26', '13:10:00'),
+(7, 'web designers', '2024-10-03', '19:18:00');
 
 -- --------------------------------------------------------
 
@@ -355,35 +358,26 @@ INSERT INTO `interviews` (`id`, `job_title`, `interview_date`, `interview_time`)
 --
 
 CREATE TABLE `jobs` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `requirements` text DEFAULT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
+  `org_id` int(6) UNSIGNED NOT NULL,
+  `job_title` varchar(255) NOT NULL,
+  `job_description` text NOT NULL,
+  `job_requirements` text NOT NULL,
+  `job_location` varchar(255) NOT NULL,
+  `salary` decimal(10,2) DEFAULT NULL,
+  `job_type` enum('full-time','part-time','internship') NOT NULL,
   `application_deadline` date DEFAULT NULL,
-  `job_limit` int(11) DEFAULT NULL
+  `job_limit` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `title`, `description`, `requirements`, `application_deadline`, `job_limit`) VALUES
-(2, 'network admistrator ', 'good in cisco,CNN, COMPUTERNETWORKS', 'BEGREE IN INFORMATION TECHNOLOGY OR RELATED FIELD', '2024-03-28', NULL),
-(6, 'network admin', 'good in cisco', 'degree/diploma in networking', '2024-04-06', NULL),
-(7, 'Software Engineering', 'Computer literate', 'masters and any other relevant certificate ', '2024-03-31', NULL),
-(8, 'network administrator', 'individual with skills in networking', 'degree in networking or other related field', '2024-04-23', NULL),
-(9, 'Web designer', 'person with skills in developing website', 'degree/diploma', '2024-05-28', NULL),
-(10, 'graphic design', 'skills in adobe photoshop,adobe illustration,after effect', 'diploma/degree/', '2024-04-30', NULL),
-(11, 'graphic design', 'skills in adobe photoshop,adobe illustration,after effect', 'diploma/degree/', '2024-04-30', NULL),
-(12, 'Web designer', 'person with skills in developing website', 'degree/diploma', '2024-05-28', NULL),
-(13, 'IT CONSULTANT', 'IT skills', 'DEGREE', '2024-04-30', 10),
-(19, '0', 'Know how to do programs', 'degree in computer science\r\ndiploma in IT', '2025-02-02', 5),
-(20, '0', 'Know how to do programs', 'degree in computer science\r\ndiploma in IT', '2025-02-02', 5),
-(21, '0', 'electrical engineer', 'degree\r\ndiploma', '2024-10-04', 10),
-(22, '0', 'electrical engineer', 'degree\r\ndiploma', '2024-10-04', 10),
-(23, '0', 'electrical engineer', 'degree\r\ndiploma', '2024-10-04', 10),
-(24, '0', 'developer \r\nandroider', 'Degree\r\ndiploma', '2024-10-11', 5),
-(25, '0', 'Developer\r\nandroider', 'Degree\r\ndiploma', '2024-09-28', 10);
+INSERT INTO `jobs` (`id`, `org_id`, `job_title`, `job_description`, `job_requirements`, `job_location`, `salary`, `job_type`, `application_deadline`, `job_limit`, `created_at`) VALUES
+(1, 8, 'web designers', 'web developer', 'a degree', 'nairobi', 50000.00, 'full-time', NULL, NULL, '2024-10-14 21:04:19'),
+(2, 8, 'android developers', 'Android developer', 'diploma in IT\r\nDegree in tech', 'Nakuru', 20000.00, 'part-time', NULL, NULL, '2024-10-14 21:05:28');
 
 -- --------------------------------------------------------
 
@@ -404,6 +398,42 @@ CREATE TABLE `normal_announcements` (
 
 INSERT INTO `normal_announcements` (`id`, `title`, `content`, `created_at`) VALUES
 (1, 'New jobs', 'any vacancies available now?', '2024-04-17 23:41:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `organizations`
+--
+
+CREATE TABLE `organizations` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `org_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `industry` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `subscription_status` enum('pending','approved','not_paid') DEFAULT 'not_paid',
+  `subscription_payment_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `organizations`
+--
+
+INSERT INTO `organizations` (`id`, `org_name`, `email`, `industry`, `password`, `description`, `reg_date`, `subscription_status`, `subscription_payment_date`) VALUES
+(1, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Technology', '$2y$10$4E8bIFzrO9UHzbY7xa37R.OHmcmXU2ZVu8uHkIIui8ek8bQ8JcPju', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:19:29', 'not_paid', NULL),
+(2, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Technology', '$2y$10$NLC4db/lkbWkS9zFOVovOObpRy6ZUi0Yr8ceXR0Gplq2YCjyjqv7W', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:25:23', 'not_paid', NULL),
+(3, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Technology', '$2y$10$TqNXdRq.9T2D49bek8QOWe3BIkBaAM1S/jZbfXmfE9DOaBw.4o68e', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:25:32', 'not_paid', NULL),
+(4, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Education', '$2y$10$ZI7Ry1yBXSWEEEuT.SPIGu.mS7ZzQ2DYbX2vkIPrsRIXC3wSg4TBC', 'gelo', '2024-10-14 20:28:26', 'pending', '2024-10-15 01:40:30'),
+(5, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Education', '$2y$10$.8c/4IMip8dNtw54Gn/Lse3GJEF4D/y509hq8s7K/ecnotMFIbDWO', 'gelo', '2024-10-14 20:31:37', 'not_paid', NULL),
+(6, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Education', '$2y$10$L35fFyQw5EOGn2l8udNVgOPXdf.okpWo5p819CPZiGSfaC7RbsJhS', 'gelo', '2024-10-14 20:34:32', 'not_paid', NULL),
+(7, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Education', '$2y$10$s4COb0ZVC5B1M4Dj/JVlkOb1/iEgFN47YNoYO6lSh/VJm2NaDeiti', 'gelo', '2024-10-14 20:38:36', 'not_paid', NULL),
+(8, 'Delmoteh Industry', 'delmo@gmail.com', 'Education', '$2y$10$6sPY.ieLhD5MyQ3HbjxMOuN44CsaH3eQrCIQKmAkKFT8BvLYW5ede', 'Deals with Medical coarses\r\nApplied sciences', '2024-10-14 20:41:41', 'not_paid', NULL),
+(9, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Healthcare', '$2y$10$wJ2GyRlOwLdUCrSFlOfPE.JshgY3Demf0ghjTiahUstCXNW/.3IjK', 'kvm manufactures', '2024-10-14 21:36:40', 'not_paid', NULL),
+(10, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Healthcare', '$2y$10$mLmGDwwLNJeOAa5f2MM4zOaMfBWRhFtc1VuqOdIzVbClj7ADZvY4i', 'kvm manufactures', '2024-10-14 21:59:24', 'not_paid', NULL),
+(11, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Technology', '$2y$10$8J1GaUFTRKVBJZ22XAx2beLjOuVRwvsohmHTZ.L1JfyXdpwJfpYCC', 'jobs available', '2024-10-14 22:17:36', 'pending', '2024-10-15 01:25:58'),
+(12, 'Mano Industry', 'mano@gmail.com', 'Healthcare', '$2y$10$PhAnliE2ehUAHWv2uwsyw.N4wjadIsgt2AiORCwBvDtUAPhuYfFfK', 'GreatJob', '2024-10-14 22:28:50', 'pending', '2024-10-15 01:28:54');
 
 -- --------------------------------------------------------
 
@@ -464,7 +494,14 @@ INSERT INTO `payments` (`id`, `fullname`, `receipt_file`, `status`, `created_at`
 (34, 'Josh', 'C:\\xampp\\htdocs\\test/receipts/2024-06-04.png', 'Pending', '2024-09-28 13:55:28', 'KLUKYJ7654', 'Approved', 'Yes', 'No'),
 (35, 'Josh', 'C:\\xampp\\htdocs\\test/receipts/2024-05-30.png', 'Pending', '2024-09-28 14:46:46', 'KJHGFHGS98', 'Approved', 'Yes', 'No'),
 (36, 'Faith Naliaka', 'C:\\xampp\\htdocs\\test/receipts/Gretsa letter.pdf', 'Pending', '2024-09-28 18:01:25', 'UIYUTYR762', 'Approved', 'Yes', 'No'),
-(37, 'Faith Naliaka', 'C:\\xampp\\htdocs\\test/receipts/joab cv official.pdf', 'Pending', '2024-09-28 18:07:32', '22WEDSADWQ', '', 'No', 'Yes');
+(37, 'Faith Naliaka', 'C:\\xampp\\htdocs\\test/receipts/joab cv official.pdf', 'Pending', '2024-09-28 18:07:32', '22WEDSADWQ', '', 'No', 'Yes'),
+(38, 'Faith Naliaka', 'C:\\xampp\\htdocs\\test/receipts/doris.jpeg', 'Pending', '2024-09-29 05:02:30', 'KLUKYJ7654', 'Approved', 'Yes', 'No'),
+(39, 'Faith Naliaka', 'C:\\xampp\\htdocs\\test/receipts/2024-05-30.png', 'Pending', '2024-09-29 06:15:30', '9876TYRDGF', 'Approved', 'Yes', 'No'),
+(40, 'JoabNalo', 'C:\\xampp\\htdocs\\test/receipts/2024-05-30.png', 'Pending', '2024-09-29 14:14:03', 'JGSHJGKA09', 'Approved', 'Yes', 'No'),
+(41, 'Faith Naliaka', 'C:\\xampp\\htdocs\\test/receipts/2024-05-30.png', 'Pending', '2024-09-30 14:01:16', '67TYHGWJDH', NULL, 'No', 'No'),
+(42, 'Faith Naliaka', 'C:\\xampp\\htdocs\\test/receipts/2024-05-30.png', 'Pending', '2024-09-30 14:20:59', '67TYHGWJDH', NULL, 'No', 'No'),
+(43, 'Faith Naliaka', 'C:\\xampp\\htdocs\\test/receipts/2024-05-30.png', 'Pending', '2024-09-30 14:22:55', '987TYFYGUH', NULL, 'No', 'No'),
+(44, 'Faith Naliaka', 'C:\\xampp\\htdocs\\test/receipts/2024-05-30.png', 'Pending', '2024-09-30 14:23:46', '9897UTYFHG', NULL, 'No', 'No');
 
 -- --------------------------------------------------------
 
@@ -520,7 +557,8 @@ INSERT INTO `users` (`User_id`, `fullname`, `email`, `password`, `registration_d
 (28, 'job', 'j@gmail.com', '$2y$10$TiiAV92SSVQcIskDwkv38uMzbe8DCB885zuAuJV3ovSpuwF3MXOzu', '2024-09-26 11:35:45', '0765434567', '876545678', 'male', '2000-09-07', 'nakuru', 'kenya', 0, 0, 'Active'),
 (29, 'Josh', 'jo@gmail.com', '$2y$10$3tacdwVMogjNdweUEw7CoeGYoz.WlGuKDQFZYGw/3iG1p6TMlZ6qe', '2024-09-27 08:08:50', '0765435467', '765344', 'male', '2000-11-11', 'Nairobi', 'kenya', 2, 0, 'Pending'),
 (30, 'Caro', 'car@gmail.com', '$2y$10$EW0h8lnNr4tLLmGhOQNJCOHHBIuAu/ngARCmvDmizMI76DHebZbVm', '2024-09-28 15:31:27', '0734765643', '987626', 'male', '2000-02-02', 'Nakuru', 'Kenyan', 0, 0, 'Active'),
-(31, 'Faith Naliaka', 'fai@gmail.com', '$2y$10$zgNqG5FieKVQcrmjl5F5tOUqfXjhIdavCM9I7Zz4a9oWIWpZQmQAq', '2024-09-28 15:33:36', '0765432345', '987654', 'male', '2000-09-09', 'Nakuru', 'kenyan', 2, 0, 'Pending');
+(31, 'Faith Naliaka', 'fai@gmail.com', '$2y$10$zgNqG5FieKVQcrmjl5F5tOUqfXjhIdavCM9I7Zz4a9oWIWpZQmQAq', '2024-09-28 15:33:36', '0765432345', '987654', 'male', '2000-09-09', 'Nakuru', 'kenyan', 2, 0, 'Pending'),
+(32, 'JoabNalo', 'jo@gmail.com', '$2y$10$zMV0im.kB0nKvZ8220M3NeHOliSAJa6h.O9dGP0e6WpIGwN/E4kmO', '2024-09-29 14:07:26', '0756532435', '756335', 'male', '2000-02-02', 'Nairobi', 'Kenyan', 2, 0, 'Pending');
 
 --
 -- Indexes for dumped tables
@@ -592,12 +630,19 @@ ALTER TABLE `interviews`
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `org_id` (`org_id`);
 
 --
 -- Indexes for table `normal_announcements`
 --
 ALTER TABLE `normal_announcements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `organizations`
+--
+ALTER TABLE `organizations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -620,7 +665,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `announcements`
@@ -662,7 +707,7 @@ ALTER TABLE `chat_messages`
 -- AUTO_INCREMENT for table `contact_form`
 --
 ALTER TABLE `contact_form`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -674,13 +719,13 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `interviews`
 --
 ALTER TABLE `interviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `normal_announcements`
@@ -689,16 +734,22 @@ ALTER TABLE `normal_announcements`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `organizations`
+--
+ALTER TABLE `organizations`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `User_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables
@@ -709,6 +760,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `announcement_replies`
   ADD CONSTRAINT `announcement_replies_ibfk_1` FOREIGN KEY (`announcement_id`) REFERENCES `normal_announcements` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`org_id`) REFERENCES `organizations` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
