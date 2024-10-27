@@ -188,70 +188,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
        
 
-<span class="close-btn material-symbols-rounded">&#x2716;</span>
-
-        
-        <div class="form-content">
-            <h2>SIGNUP</h2>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" autocomplete="off">
-
-                <div class="input-field">
-                    <input type="text" name="fullname" required>
-                    <label>Enter your name</label>
-                </div>
-                <div class="input-field">
-                    <input type="email" name="email" required>
-                    <label>Enter your email</label>
-                </div>
-                <div class="input-field">
-                    <input type="password" name="password" required>
-                    <label>Create password</label>
-                </div>
-                <div class="input-field">
-                <input type="text" name="phone" maxlength="10" pattern="\d{10}" title="Phone number must be exactly 10 digits" required>
-
-                    <label>Phone no</label>
-                </div>
-                <div class="input-field">
-                <input type="text" name="id_no" maxlength="6" pattern="\d{6}" title="ID number must be exactly 6 digits" required>
-
-                    <label>Id No</label>
-                </div>
-                <div class="input-field">
-                    <select name="gender" required>
-                        <option value=""></option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <label>Gender</label>
-                </div>
-                <div class="input-field">
-                    <input type="date" name="dob" required>
-                    <label>Date of Birth</label>
-                </div>
-                <div class="input-field">
-                    <input type="text" name="county" required>
-                    <label>County</label>
-                </div>
-                <div class="input-field">
-                    <input type="text" name="nationality" required>
-                    <label>Nationality</label>
-                </div>
-                <div class="policy-text">
-                    <input type="checkbox" id="policy">
-                    <label for="policy">
-                        I agree the
-                        <a href="#" class="option" style="text-decoration: none; color: #d51414;">Terms & Conditions</a>
-                    </label>
-                </div><br>
-                <button type="submit" name="submit">Sign Up</button>
-            </form>
-            <div class="bottom-link">
-                Already have an account? 
-                <a href="login.php" id="login-link">Login</a>
-            </div>
+       <div class="form-content">
+    <img src="logo.png" alt="Logo" style="width: 80px; height: auto; margin: 0 auto 15px; display: block;">
+    <h2>SIGNUP</h2>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" autocomplete="off">
+        <div class="input-field">
+            <input type="text" name="fullname" required>
+            <label>Enter your name</label>
         </div>
+        <div class="input-field">
+            <input type="email" name="email" required>
+            <label>Enter your email</label>
+        </div>
+        <div class="input-field">
+            <input type="password" name="password" required>
+            <label>Create password</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="phone" maxlength="10" pattern="\d{10}" title="Phone number must be exactly 10 digits" required>
+            <label>Phone no</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="id_no" maxlength="6" pattern="\d{6}" title="ID number must be exactly 6 digits" required>
+            <label>Id No</label>
+        </div>
+        <div class="input-field">
+            <select name="gender" required>
+                <option value=""></option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <label>Gender</label>
+        </div>
+        <div class="input-field">
+            <input type="date" name="dob" required>
+            <label>Date of Birth</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="county" required>
+            <label>County</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="nationality" required>
+            <label>Nationality</label>
+        </div>
+        <div class="policy-text">
+            <input type="checkbox" id="policy">
+            <label for="policy">
+                I agree to the
+                <a href="#" class="option" style="text-decoration: none; color: #d51414;">Terms & Conditions</a>
+            </label>
+        </div><br>
+        <button type="submit" name="submit">Sign Up</button>
+    </form>
+    <div class="bottom-link">
+        Already have an account? 
+        <a href="login.php" id="login-link">Login</a>
+    </div>
+</div>
+
     </div>
     <script>
     // JavaScript code here

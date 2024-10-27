@@ -7,54 +7,82 @@
   <link rel="stylesheet" href="styles.css"> <!-- Custom CSS -->
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
       padding: 0;
       margin: 0;
     }
 
     .container {
-      max-width: 600px;
+      max-width: 500px;
       margin: 50px auto;
-      padding: 20px;
+      padding: 30px;
       background-color: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
+      animation: fadeIn 0.6s ease-in-out; /* Smooth animation */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Logo section */
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 75px;
+      height: auto;
     }
 
     h1 {
       text-align: center;
       color: #333;
+      font-size: 28px;
+      margin-bottom: 25px;
     }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
     }
 
     label {
-      font-size: 16px;
-      margin-bottom: 5px;
+      font-size: 15px;
+      color: #555;
     }
 
     input, textarea, select {
-      padding: 10px;
-      border: 1px solid #ccc;
+      padding: 12px;
+      border: 1px solid #ddd;
       border-radius: 5px;
       font-size: 16px;
       width: 100%;
+      box-sizing: border-box;
+      background-color: #f9f9f9;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #007BFF;
+      outline: none;
     }
 
     button {
-      padding: 12px;
-      font-size: 16px;
+      padding: 15px;
+      font-size: 18px;
       color: white;
       background-color: #007BFF;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      width: 100%;
     }
 
     button:hover {
@@ -62,7 +90,7 @@
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .error {
@@ -70,10 +98,32 @@
       margin-top: -10px;
       font-size: 14px;
     }
+
+    /* Add login link */
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Logo Section -->
+    <div class="logo">
+      <img src="logo.png" alt="Organisation Logo"> <!-- Replace with your logo source -->
+    </div>
+
     <h1>Register as Organisation</h1>
     <form action="register_organisation_process.php" method="POST">
       <div class="form-group">
@@ -111,11 +161,15 @@
 
       <div class="form-group">
         <label for="description">Organization Description:</label>
-        <textarea id="description" name="description" rows="5" required></textarea>
+        <textarea id="description" name="description" rows="4" required></textarea>
       </div>
 
       <button type="submit">Register</button>
     </form>
+
+    <div class="login-link">
+      <p>Already have an account? <a href="login_organisation.php">Login here</a></p>
+    </div>
   </div>
 </body>
 </html>

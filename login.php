@@ -113,7 +113,7 @@
             font-size: 20px;
         }
         .form-content h2{
-            text align: center;
+            text-align: center;
         }
 
         /* Style for sign up button */
@@ -180,6 +180,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="form-details">
         <!-- Removed the h1 and p elements -->
     </div>
+    <div class="form-details">
+    <img src="logo.png" alt="Logo" style="width: 80px; height: auto; margin: 0 auto 15px; display: block;">
+
     <div class="form-content">
         <h2>LOGIN</h2>
         <form action="login.php" method="POST">

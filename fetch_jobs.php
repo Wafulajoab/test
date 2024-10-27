@@ -146,10 +146,20 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     echo "<table style='border-collapse: collapse; width: 100%;'>";
-    echo "<tr><th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>Title</th><th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>Description</th><th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>requirements</th><th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>Application Deadline</th><th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>Action</th></tr>";
+    echo "<tr>
+            <th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>Title</th>
+            <th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>Description</th>
+            <th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>Requirements</th>
+            <th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>Application Deadline</th>
+            <th style='background-color: #f2f2f2; border: 1px solid black; text-align: left; padding: 8px;'>Action</th>
+          </tr>";
     
     // Fetch and display data row by row
     while ($row = mysqli_fetch_assoc($result)) {
+        // Fallback if description or requirements are missing
+        $description = isset($row['description']) ? $row['description'] : 'No description available';
+        $requirements = isset($row['requirements']) ? $row['requirements'] : 'No requirements listed';
+
         // Query to count the number of applications for the current job
         $applications_sql = "SELECT COUNT(*) as count FROM Applications WHERE applied_position = '{$row['title']}'";
         $applications_result = mysqli_query($conn, $applications_sql);
@@ -157,14 +167,15 @@ if (mysqli_num_rows($result) > 0) {
         $applications_count = $applications_row['count'];
 
         echo "<tr>";
-        echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'>" . $row['title'] . "</td>";
-        echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'>" . $row['description'] . "</td>";
-        echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'>" . $row['requirements'] . "</td>";
-        echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'>" . $row['application_deadline'] . "</td>";
+        echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'>" . htmlspecialchars($row['title']) . "</td>";
+        echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'>" . htmlspecialchars($description) . "</td>";
+        echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'>" . htmlspecialchars($requirements) . "</td>";
+        echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'>" . htmlspecialchars($row['application_deadline']) . "</td>";
+        
         if ($applications_count >= $row['job_limit']) {
             echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'>Limit Reached</td>";
         } else {
-            echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'><a href='application.php?job_id=" . $row['id'] . "'>Apply</a></td>"; // Link to application form with job ID
+            echo "<td style='border: 1px solid black; text-align: left; padding: 8px;'><a href='application.php?job_id=" . $row['id'] . "'>Apply</a></td>";
         }
         echo "</tr>";
     }

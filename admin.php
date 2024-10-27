@@ -7,7 +7,7 @@
     <!-- Google Fonts Link For Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
     <style>
-     /* style.css */
+/* General body styling */
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -18,6 +18,7 @@ body {
     height: 100vh;
 }
 
+/* Popup form container styling */
 .form-popup {
     background-color: #fff;
     padding: 40px;
@@ -40,6 +41,15 @@ body {
     }
 }
 
+/* Logo image styling */
+.form-content .logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 100px;
+    height: auto;
+}
+
+/* Form title styling */
 .form-content h2 {
     text-align: center;
     margin-bottom: 25px;
@@ -48,11 +58,13 @@ body {
     font-weight: 600;
 }
 
+/* Input field container styling */
 .input-field {
     margin-bottom: 20px;
     position: relative;
 }
 
+/* Input label styling */
 .input-field label {
     font-size: 14px;
     color: #555;
@@ -61,6 +73,7 @@ body {
     font-weight: 500;
 }
 
+/* Input field styling */
 .input-field input {
     width: 100%;
     padding: 12px 15px;
@@ -70,72 +83,28 @@ body {
     transition: border-color 0.3s;
 }
 
+/* Input field focus effect */
 .input-field input:focus {
     border-color: #6d5bba;
     outline: none;
 }
 
-.button-container {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.button-container button {
-    width: 100%;
-    background-color: #6d5bba;
-    color: #fff;
-    border: none;
-    padding: 12px 0;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: 500;
-}
-
-.button-container button:hover {
-    background-color: #5a4b9f;
-}
-
-.bottom-link {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.bottom-link a {
-    color: #6d5bba;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.bottom-link a:hover {
-    text-decoration: underline;
-}
-
-.error-message {
-    color: #d9534f;
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-}
-
-.close-btn {
+/* Eye icon styling for password toggle */
+.icon-eye {
     position: absolute;
-    top: 10px;
+    top: 50%;
     right: 15px;
+    transform: translateY(-50%);
     cursor: pointer;
-    font-size: 22px;
     color: #888;
-    transition: color 0.3s ease;
+    font-size: 20px;
 }
 
-.close-btn:hover {
+.icon-eye:hover {
     color: #444;
 }
 
-
-/* Styling for the Submit button in form */
+/* Submit button styling */
 button[type="submit"] {
     width: 100%;
     padding: 12px 0;
@@ -163,7 +132,45 @@ button[type="submit"]:focus {
     box-shadow: 0 0 10px rgba(109, 91, 186, 0.7); /* Glowing effect on focus */
 }
 
+/* Bottom link styling */
+.bottom-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
 
+.bottom-link a {
+    color: #6d5bba;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.bottom-link a:hover {
+    text-decoration: underline;
+}
+
+/* Error message styling */
+.error-message {
+    color: #d9534f;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Close button styling */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #444;
+}
     </style>
 </head>
 <body>
@@ -176,7 +183,7 @@ button[type="submit"]:focus {
         // Set parameters and execute
         $fullname = $_POST['fullname'];
         $email = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password before storing
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO admins (fullname, email, password) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
@@ -185,7 +192,7 @@ button[type="submit"]:focus {
         if ($stmt->execute()) {
             echo "<script>
                     alert('Admin registration successful!');
-                    window.location.href = 'admin_login.php'; // Redirect using JavaScript
+                    window.location.href = 'admin_login.php';
                   </script>";
             exit;
         } else {
@@ -199,19 +206,22 @@ button[type="submit"]:focus {
 
         <span class="close-btn material-symbols-rounded">close</span>
         <div class="form-content">
+            <img src="logo.png" alt="Logo" class="logo">
+            
             <h2>ADMIN SIGNUP</h2>
             <form action="admin.php" method="POST">
                 <div class="input-field">
+                <label>Enter your name</label>
                     <input type="text" name="fullname" required autocomplete="off">
-                    <label>Enter your name</label>
                 </div>
                 <div class="input-field">
+                <label>Enter your email</label>
                     <input type="email" name="email" required autocomplete="off">
-                    <label>Enter your email</label>
                 </div>
                 <div class="input-field">
-                    <input type="password" name="password" required autocomplete="off">
-                    <label>Create password</label>
+                <label>Create password</label>
+                    <input type="password" name="password" id="password" required autocomplete="off">
+                    <span class="icon-eye material-symbols-rounded" onclick="togglePassword()">visibility</span>
                 </div>
                 <div class="policy-text" style="text-align: center;">
                     <input type="checkbox" id="policy" required>
@@ -223,7 +233,6 @@ button[type="submit"]:focus {
 
                 <br>
                 <button type="submit" name="submit">Sign Up as Admin</button> 
-                
     
             </form>
             <div class="bottom-link">
@@ -233,12 +242,23 @@ button[type="submit"]:focus {
         </div>
     </div>
     <script>
-        // JavaScript code here
         const closeBtn = document.querySelector('.close-btn');
-
         closeBtn.addEventListener('click', () => {
             document.querySelector('.form-popup').style.display = 'none';
         });
+
+        function togglePassword() {
+            const passwordInput = document.getElementById("password");
+            const icon = document.querySelector(".icon-eye");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.textContent = "visibility_off";
+            } else {
+                passwordInput.type = "password";
+                icon.textContent = "visibility";
+            }
+        }
     </script>
 </body>
 </html>

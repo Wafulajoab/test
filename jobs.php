@@ -66,40 +66,47 @@
     
 <?php
 session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if all required fields are filled
-    if (isset($_POST['title']) && isset($_POST['job_limit']) && isset($_POST['description']) && isset($_POST['requirements']) && isset($_POST['deadline'])) {
+    if (isset($_POST['title'], $_POST['job_limit'], $_POST['description'], $_POST['requirements'], $_POST['deadline'], $_POST['org_id'])) {
         // Database connection
-        require_once 'connect.php'; // Make sure to replace 'connect.php' with the actual filename
-        
-        // Prepare and bind SQL statement
-        $sql = "INSERT INTO Jobs (title, job_limit, description, requirements, application_deadline) VALUES (?, ?, ?, ?, ?)";
+        require_once 'connect.php'; // Replace 'connect.php' with the actual filename
+
+        // Prepare SQL statement
+        $sql = "INSERT INTO Jobs (org_id, job_title, job_limit, job_description, job_requirements, application_deadline) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
-        
-        // Bind parameters
-        mysqli_stmt_bind_param($stmt, "issss", $title, $job_limit, $description, $requirements, $deadline);
 
-        // Set parameters
-        $title = $_POST['title'];
-        $job_limit = $_POST['job_limit'];
-        $description = $_POST['description'];
-        $requirements = $_POST['requirements'];
-        $deadline = $_POST['deadline'];
+        // Check if preparation was successful
+        if ($stmt) {
+            // Bind parameters
+            mysqli_stmt_bind_param($stmt, "isssss", $org_id, $title, $job_limit, $description, $requirements, $deadline);
 
-        // Execute statement
-        if (mysqli_stmt_execute($stmt)) {
-            // Close statement and connection
-            mysqli_stmt_close($stmt);
-            mysqli_close($conn);
+            // Set parameters
+            $org_id = (int)$_POST['org_id'];  // Ensure org_id is an integer
+            $title = trim($_POST['title']);
+            $job_limit = trim($_POST['job_limit']);
+            $description = trim($_POST['description']);
+            $requirements = trim($_POST['requirements']);
+            $deadline = $_POST['deadline'];
 
-            // Redirect to manage_jobs.php after successful submission
-            header("Location: manage_jobs.php");
-            exit(); // Ensure script execution stops after redirection
+            // Execute statement
+            if (mysqli_stmt_execute($stmt)) {
+                // Close statement and connection
+                mysqli_stmt_close($stmt);
+                mysqli_close($conn);
+
+                // Redirect to manage_jobs.php after successful submission
+                header("Location: manage_jobs.php");
+                exit();
+            } else {
+                echo "<p>Error executing statement: " . mysqli_stmt_error($stmt) . "</p>";
+            }
         } else {
-            echo "<p>Error posting job: " . mysqli_error($conn) . "</p>";
+            echo "<p>Error preparing statement: " . mysqli_error($conn) . "</p>";
         }
     } else {
-        echo "<p>Please fill in all required fields.</p>";
+        echo "<p>Please fill in all required fields, including the organization ID.</p>";
     }
 }
 ?>

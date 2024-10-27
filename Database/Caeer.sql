@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2024 at 12:51 AM
+-- Generation Time: Oct 27, 2024 at 04:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -368,16 +368,18 @@ CREATE TABLE `jobs` (
   `job_type` enum('full-time','part-time','internship') NOT NULL,
   `application_deadline` date DEFAULT NULL,
   `job_limit` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `title` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `org_id`, `job_title`, `job_description`, `job_requirements`, `job_location`, `salary`, `job_type`, `application_deadline`, `job_limit`, `created_at`) VALUES
-(1, 8, 'web designers', 'web developer', 'a degree', 'nairobi', 50000.00, 'full-time', NULL, NULL, '2024-10-14 21:04:19'),
-(2, 8, 'android developers', 'Android developer', 'diploma in IT\r\nDegree in tech', 'Nakuru', 20000.00, 'part-time', NULL, NULL, '2024-10-14 21:05:28');
+INSERT INTO `jobs` (`id`, `org_id`, `job_title`, `job_description`, `job_requirements`, `job_location`, `salary`, `job_type`, `application_deadline`, `job_limit`, `created_at`, `title`) VALUES
+(3, 21, 'web designers', 'full stack developer', 'degree', 'thika', 1000000.00, 'part-time', NULL, NULL, '2024-10-24 07:07:50', NULL),
+(4, 21, 'Engineers', 'degree\r\ndiploma', 'good appetite', 'nairobi', 4000.00, 'full-time', NULL, NULL, '2024-10-24 07:10:35', NULL),
+(6, 21, 'catering', 'food cooking', 'diploma', 'nairobi', 30000.00, 'full-time', NULL, NULL, '2024-10-27 03:28:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -413,27 +415,58 @@ CREATE TABLE `organizations` (
   `password` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `subscription_status` enum('pending','approved','not_paid') DEFAULT 'not_paid',
-  `subscription_payment_date` datetime DEFAULT NULL
+  `subscription_status` enum('pending','approved','not_paid','activated') DEFAULT 'not_paid',
+  `subscription_payment_date` datetime DEFAULT NULL,
+  `receipt_path` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `organizations`
 --
 
-INSERT INTO `organizations` (`id`, `org_name`, `email`, `industry`, `password`, `description`, `reg_date`, `subscription_status`, `subscription_payment_date`) VALUES
-(1, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Technology', '$2y$10$4E8bIFzrO9UHzbY7xa37R.OHmcmXU2ZVu8uHkIIui8ek8bQ8JcPju', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:19:29', 'not_paid', NULL),
-(2, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Technology', '$2y$10$NLC4db/lkbWkS9zFOVovOObpRy6ZUi0Yr8ceXR0Gplq2YCjyjqv7W', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:25:23', 'not_paid', NULL),
-(3, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Technology', '$2y$10$TqNXdRq.9T2D49bek8QOWe3BIkBaAM1S/jZbfXmfE9DOaBw.4o68e', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:25:32', 'not_paid', NULL),
-(4, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Education', '$2y$10$ZI7Ry1yBXSWEEEuT.SPIGu.mS7ZzQ2DYbX2vkIPrsRIXC3wSg4TBC', 'gelo', '2024-10-14 20:28:26', 'pending', '2024-10-15 01:40:30'),
-(5, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Education', '$2y$10$.8c/4IMip8dNtw54Gn/Lse3GJEF4D/y509hq8s7K/ecnotMFIbDWO', 'gelo', '2024-10-14 20:31:37', 'not_paid', NULL),
-(6, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Education', '$2y$10$L35fFyQw5EOGn2l8udNVgOPXdf.okpWo5p819CPZiGSfaC7RbsJhS', 'gelo', '2024-10-14 20:34:32', 'not_paid', NULL),
-(7, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Education', '$2y$10$s4COb0ZVC5B1M4Dj/JVlkOb1/iEgFN47YNoYO6lSh/VJm2NaDeiti', 'gelo', '2024-10-14 20:38:36', 'not_paid', NULL),
-(8, 'Delmoteh Industry', 'delmo@gmail.com', 'Education', '$2y$10$6sPY.ieLhD5MyQ3HbjxMOuN44CsaH3eQrCIQKmAkKFT8BvLYW5ede', 'Deals with Medical coarses\r\nApplied sciences', '2024-10-14 20:41:41', 'not_paid', NULL),
-(9, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Healthcare', '$2y$10$wJ2GyRlOwLdUCrSFlOfPE.JshgY3Demf0ghjTiahUstCXNW/.3IjK', 'kvm manufactures', '2024-10-14 21:36:40', 'not_paid', NULL),
-(10, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Healthcare', '$2y$10$mLmGDwwLNJeOAa5f2MM4zOaMfBWRhFtc1VuqOdIzVbClj7ADZvY4i', 'kvm manufactures', '2024-10-14 21:59:24', 'not_paid', NULL),
-(11, 'Kenya Vehicle Manufacturing company', 'joabfx22@gmail.com', 'Technology', '$2y$10$8J1GaUFTRKVBJZ22XAx2beLjOuVRwvsohmHTZ.L1JfyXdpwJfpYCC', 'jobs available', '2024-10-14 22:17:36', 'pending', '2024-10-15 01:25:58'),
-(12, 'Mano Industry', 'mano@gmail.com', 'Healthcare', '$2y$10$PhAnliE2ehUAHWv2uwsyw.N4wjadIsgt2AiORCwBvDtUAPhuYfFfK', 'GreatJob', '2024-10-14 22:28:50', 'pending', '2024-10-15 01:28:54');
+INSERT INTO `organizations` (`id`, `org_name`, `email`, `industry`, `password`, `description`, `reg_date`, `subscription_status`, `subscription_payment_date`, `receipt_path`) VALUES
+(1, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$4E8bIFzrO9UHzbY7xa37R.OHmcmXU2ZVu8uHkIIui8ek8bQ8JcPju', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:19:29', 'not_paid', NULL, NULL),
+(2, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$NLC4db/lkbWkS9zFOVovOObpRy6ZUi0Yr8ceXR0Gplq2YCjyjqv7W', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:25:23', 'not_paid', NULL, NULL),
+(3, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$TqNXdRq.9T2D49bek8QOWe3BIkBaAM1S/jZbfXmfE9DOaBw.4o68e', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:25:32', 'not_paid', NULL, NULL),
+(4, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$ZI7Ry1yBXSWEEEuT.SPIGu.mS7ZzQ2DYbX2vkIPrsRIXC3wSg4TBC', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:28:26', '', '2024-10-15 01:40:30', NULL),
+(5, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$.8c/4IMip8dNtw54Gn/Lse3GJEF4D/y509hq8s7K/ecnotMFIbDWO', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:31:37', 'not_paid', NULL, NULL),
+(6, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$L35fFyQw5EOGn2l8udNVgOPXdf.okpWo5p819CPZiGSfaC7RbsJhS', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:34:32', 'not_paid', NULL, NULL),
+(7, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$s4COb0ZVC5B1M4Dj/JVlkOb1/iEgFN47YNoYO6lSh/VJm2NaDeiti', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:38:36', 'not_paid', NULL, NULL),
+(8, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$6sPY.ieLhD5MyQ3HbjxMOuN44CsaH3eQrCIQKmAkKFT8BvLYW5ede', 'deals with vehicle Manufacturing Industry', '2024-10-14 20:41:41', 'not_paid', NULL, NULL),
+(9, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$wJ2GyRlOwLdUCrSFlOfPE.JshgY3Demf0ghjTiahUstCXNW/.3IjK', 'deals with vehicle Manufacturing Industry', '2024-10-14 21:36:40', 'not_paid', NULL, NULL),
+(10, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$mLmGDwwLNJeOAa5f2MM4zOaMfBWRhFtc1VuqOdIzVbClj7ADZvY4i', 'deals with vehicle Manufacturing Industry', '2024-10-14 21:59:24', 'not_paid', NULL, NULL),
+(11, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$8J1GaUFTRKVBJZ22XAx2beLjOuVRwvsohmHTZ.L1JfyXdpwJfpYCC', 'deals with vehicle Manufacturing Industry', '2024-10-14 22:17:36', '', '2024-10-15 01:25:58', NULL),
+(12, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$PhAnliE2ehUAHWv2uwsyw.N4wjadIsgt2AiORCwBvDtUAPhuYfFfK', 'deals with vehicle Manufacturing Industry', '2024-10-14 22:28:50', '', '2024-10-15 01:28:54', NULL),
+(13, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$Qh6mLseuHpT1oebaVQY8Z..gJFY1i61R3uawHQkk3KO9I7Cx20Jvi', 'deals with vehicle Manufacturing Industry', '2024-10-17 05:00:33', '', '2024-10-17 08:00:41', NULL),
+(14, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$lPzwVU3G3OZkdtz/4abw.e4ofJLB56Keqcomc4JSVBTDCfpr.4OjW', 'deals with vehicle Manufacturing Industry', '2024-10-17 05:14:22', '', '2024-10-17 08:14:34', NULL),
+(15, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$cvuESCWrIP.ZyywlJT7wLebFaivEpo7chdW5skoZMdEEErfpnaOJu', 'deals with vehicle Manufacturing Industry', '2024-10-17 05:26:49', '', '2024-10-17 08:26:51', NULL),
+(16, 'Kenya Vehicle Manufacturing company', 'waf@mail.com', 'Healthcare', '$2y$10$fZVYoXc5zPZiyHEUnbT9SuhTpJKdNFy0dIsYqO3peR70cWx6yoGnu', 'deals with vehicle Manufacturing Industry', '2024-10-17 07:34:28', '', '2024-10-17 10:34:30', NULL),
+(17, 'Citizen Tv Company', 'citizen@gmail.com', 'Healthcare', '$2y$10$tcmVmDbJ2dLM5.QbrW3/G.OLdDSJMSVIybGc/1eNUkDSshMkEt72q', 'Jounalists required\\r\\nboth diploma and degree students', '2024-10-22 16:57:31', '', '2024-10-22 19:57:35', NULL),
+(18, 'NALO COMPANY', 'naloo@gmail.com', 'Healthcare', '$2y$10$TlGEM4t0Ny6CVBvC803/veKkaNuQqq0kLErDj4s0v/zrqHpxGJjj2', 'health students\\r\\ndiploma and degree students', '2024-10-22 16:59:50', '', '2024-10-22 19:59:53', NULL),
+(19, 'KTN News', 'ktn@gmail.com', 'Technology', '$2y$10$5mPvPEUwihlrpAgACvi8i.YLs.0rO0KZzDQpESctgPce3/uVSWu9e', 'tech students\\r\\njournalists', '2024-10-22 17:02:26', '', '2024-10-22 20:02:28', NULL),
+(20, 'NTV ', 'ntv@gmail.com', 'Education', '$2y$10$x51fyU.iV05tmN5OyxpUDuEbXF1noRylLK.y/4cKrrEcDndDTcqlq', 'broadcasting\\r\\nlivestreaming', '2024-10-22 20:02:21', '', '2024-10-22 23:02:24', NULL),
+(21, 'Delmoteh Industry', 'joabfx22@gmail.com', 'Healthcare', '$2y$10$2.fvKeQFwukF7vR6nOHAWeyw2fNiAo..YB.RWqLvcw2LOn95kJbyi', 'health status', '2024-10-23 11:45:38', '', '2024-10-24 06:55:20', 'uploads/Screenshot (1).png'),
+(22, 'Delmoteh Industry', 'joabfx22@gmail.com', 'Healthcare', '$2y$10$Q6MM/gl8yaNRaCR4gV7h6.aNo9Y6KrHg9R5pl0zHZq355MyUkdtlO', 'health status', '2024-10-23 11:46:12', '', NULL, NULL),
+(23, 'Maziwa Company', 'maziwa@gmail.com', 'Technology', '$2y$10$ehOxxFizk2ORO2g3gRUGqeeco.59KDvcTa5x1nHMFNb9r3WhpnCZe', 'Maziwa production', '2024-10-23 12:20:17', '', '2024-10-23 15:31:12', 'uploads/pic1.jpg'),
+(24, 'Mano Industry', 'fai@gmail.com', 'Education', '$2y$10$4SL9CKHrBGRTGUYmlZoxQOPXPIo2XHj.W/JDP6eD8.dMyQyJCPWxK', 'hello', '2024-10-23 14:38:42', '', '2024-10-23 17:39:12', 'uploads/pic2.jpg'),
+(25, 'Citizen Tv Co', 'ci@gmail.com', 'Education', '$2y$10$RL9ET8ts73X2ZEPiJqDffujvimcUQCE5CdiqC4ECLCbDZud0lcvEO', 'education students', '2024-10-23 15:11:16', '', '2024-10-23 18:12:46', 'uploads/pic1.jpg'),
+(26, 'TV47', 'tv@gmail.com', 'Finance', '$2y$10$kk6gIrf8Dnp5ZFk/umZBfuRxFwmLk0QiKOW/woaA7SJAFJrsveIgm', 'tv presenters', '2024-10-23 15:53:48', '', '2024-10-23 18:54:02', 'uploads/pic1.jpg'),
+(27, 'TV477', 'tv7@gmail.com', 'Finance', '$2y$10$36mzC2oYLryl3USmejNlV.xtNWpSnUNwsUSI3rJbJfZRBm2MRsKji', 'tv presenters', '2024-10-23 16:14:46', '', '2024-10-23 19:15:06', 'uploads/pic6.jpg'),
+(28, 'TV4770', 'tv7@gmail.com', 'Finance', '$2y$10$aBnLuiDN7um8QrgZ6dYtf.Y0YB4l4B.7qNfVaDdU2fQrKIpFyZS.q', 'tv presenters', '2024-10-23 16:16:39', '', '2024-10-23 19:16:57', 'uploads/Screenshot (1).png'),
+(29, 'Delmoteh Industry', 'joabfx22@gmail.com', 'Healthcare', '$2y$10$FmjKgeQyteVy1dFtLw9ZAeoon2Yuy74jVy13IelaMrA3LDcAV0RQK', 'health status', '2024-10-23 16:22:54', '', '2024-10-23 19:23:15', 'uploads/pic1.jpg'),
+(30, 'Kenya Vehicle Manufacturing company', 'wafulajoab98@gmail.com', 'Healthcare', '$2y$10$jeoAGjepKe9rqiyhre6yF.DRaHgpYQIoyIqd9mfoYZnXfl1n7yfKK', 'hello', '2024-10-23 16:27:52', '', '2024-10-23 19:28:06', 'uploads/pic1.jpg'),
+(31, 'Mano Industry', 'joabfx22@gmail.com', 'Education', '$2y$10$/a.h6lhQpB7sc0vZu80wh.nsW612TzUQCteMN6K1iX6d0bwu/6VuW', 'organizations best quality', '2024-10-24 02:20:17', '', '2024-10-24 05:33:43', 'uploads/Screenshot (6).png'),
+(32, 'Mano Industry', 'joabfx22@gmail.com', 'Education', '$2y$10$YtqtC/haOzV5B131mDYvE.ZGpus8u14ZD2lL.TzFAPMHxv0idE77C', 'organizations best quality', '2024-10-24 02:44:33', '', '2024-10-24 05:46:23', 'uploads/Screenshot (3).png'),
+(33, 'Mano Industry', 'joabfx22@gmail.com', 'Education', '$2y$10$b8qk9LzN.2sSB08XlvpS9O1jBoIcl1YdY038eG31mmxzFslCju4dK', 'organizations best quality', '2024-10-24 02:51:48', '', '2024-10-24 05:52:09', 'uploads/Screenshot (6).png'),
+(34, 'Freddy', 'fred@gmail.com', 'Healthcare', '$2y$10$ijPj.dUO/rJQSHgAFj6MFeyXirSsx5ELUsIG.igaX6vaDcehvQ3Ja', 'good company', '2024-10-24 02:55:44', '', '2024-10-24 05:56:21', 'uploads/Screenshot (3).png'),
+(35, 'Brenda Company', 'brenda@gmail.com', 'Healthcare', '$2y$10$DrSDfz5eTsYaZwhXIZ/ms.6oNy8cXAhPTPaYa/cWZHS0AA/gtm9dK', 'beauty', '2024-10-24 03:07:46', '', '2024-10-24 06:08:25', 'uploads/Screenshot (1).png'),
+(36, 'nalo', 'naloo@gmail.com', 'Healthcare', '$2y$10$6bND23N6Lvp.x6ga8FMK.eLnJLFeyORiMtdH2HRnMsRBu7d2jftEG', 'nalo company', '2024-10-24 03:12:05', '', '2024-10-24 06:12:17', 'uploads/Screenshot (1).png'),
+(37, 'Kenya Beans Company', 'kenya@gmail.com', 'Finance', '$2y$10$NwGSGDanVeP5Lt7NbY0wiOwNHNiB573wYmWAOSETmX4o./luJj2U6', 'well organised', '2024-10-24 03:25:37', '', '2024-10-24 06:25:48', 'uploads/Screenshot (6).png'),
+(38, 'Kenya Youths forum', 'ken@gmail.com', 'Education', '$2y$10$ehJz8eStyDS2p61/T63VXOZG6Z5Ojed40YlEiGQYdxqoaIdf1qJtK', 'hello', '2024-10-24 03:30:17', '', '2024-10-24 06:30:30', 'uploads/Screenshot (9).png'),
+(39, 'WIMA PLAZA', 'wima@gmail.com', 'Technology', '$2y$10$gwaO0a7svgTMem.MthOxyOR/Qkel9VIKjX5iVDmQnboTyfLOy6laG', 'wima notes', '2024-10-24 03:35:07', '', NULL, NULL),
+(40, 'WIMA PLAZA', 'wima@gmail.com', 'Technology', '$2y$10$zZooQwVr43/SbQ6bfxDSsu.jXfH9wenSNH9jpERuaPa5ggDWSjgNK', 'wima notes', '2024-10-24 03:37:26', '', '2024-10-24 06:38:58', 'uploads/Screenshot (1).png'),
+(41, 'WIMA PLAZAa', 'wima@gmail.com', 'Technology', '$2y$10$4h9SE5WWGjdTJ1AYrgVX1uy2PkgXEfqHkSKFeHNJkgbNQhmMGF9Im', 'wima notes', '2024-10-24 03:43:48', '', '2024-10-24 06:44:06', 'uploads/Screenshot (1).png'),
+(42, 'Umoja Estate', 'umoja@gmail.com', 'Education', '$2y$10$gqS3U1UXQShKW/x/jZIcPeE0NW5OV00RSzAAad1Xlosyp8z5y82Ny', 'umoja ni nguvu', '2024-10-24 04:06:59', '', '2024-10-24 07:07:17', 'uploads/Screenshot (1).png');
 
 -- --------------------------------------------------------
 
@@ -558,7 +591,8 @@ INSERT INTO `users` (`User_id`, `fullname`, `email`, `password`, `registration_d
 (29, 'Josh', 'jo@gmail.com', '$2y$10$3tacdwVMogjNdweUEw7CoeGYoz.WlGuKDQFZYGw/3iG1p6TMlZ6qe', '2024-09-27 08:08:50', '0765435467', '765344', 'male', '2000-11-11', 'Nairobi', 'kenya', 2, 0, 'Pending'),
 (30, 'Caro', 'car@gmail.com', '$2y$10$EW0h8lnNr4tLLmGhOQNJCOHHBIuAu/ngARCmvDmizMI76DHebZbVm', '2024-09-28 15:31:27', '0734765643', '987626', 'male', '2000-02-02', 'Nakuru', 'Kenyan', 0, 0, 'Active'),
 (31, 'Faith Naliaka', 'fai@gmail.com', '$2y$10$zgNqG5FieKVQcrmjl5F5tOUqfXjhIdavCM9I7Zz4a9oWIWpZQmQAq', '2024-09-28 15:33:36', '0765432345', '987654', 'male', '2000-09-09', 'Nakuru', 'kenyan', 2, 0, 'Pending'),
-(32, 'JoabNalo', 'jo@gmail.com', '$2y$10$zMV0im.kB0nKvZ8220M3NeHOliSAJa6h.O9dGP0e6WpIGwN/E4kmO', '2024-09-29 14:07:26', '0756532435', '756335', 'male', '2000-02-02', 'Nairobi', 'Kenyan', 2, 0, 'Pending');
+(32, 'JoabNalo', 'jo@gmail.com', '$2y$10$zMV0im.kB0nKvZ8220M3NeHOliSAJa6h.O9dGP0e6WpIGwN/E4kmO', '2024-09-29 14:07:26', '0756532435', '756335', 'male', '2000-02-02', 'Nairobi', 'Kenyan', 2, 0, 'Pending'),
+(33, 'kanyambuu', 'nyambu@gmail.com', '$2y$10$0QLPEMAMA8vd0mXh4eFox.7L.6uE1nFm/M1agQauyme9jeOX0wy9q', '2024-10-22 08:47:14', '0765434356', '986543', 'male', '2000-09-09', 'keenya', 'kenya', 0, 0, 'Active');
 
 --
 -- Indexes for dumped tables
@@ -725,7 +759,7 @@ ALTER TABLE `interviews`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `normal_announcements`
@@ -737,7 +771,7 @@ ALTER TABLE `normal_announcements`
 -- AUTO_INCREMENT for table `organizations`
 --
 ALTER TABLE `organizations`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -749,7 +783,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `User_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables

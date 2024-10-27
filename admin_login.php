@@ -6,148 +6,144 @@
     <title>Admin Login</title>
     <style>
         /* style.css */
-body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #6d5bba 0%, #8d58bf 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #6d5bba 0%, #8d58bf 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-.form-popup {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 380px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    position: relative;
-    animation: slideIn 0.6s ease-in-out;
-}
+        .form-popup {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: slideIn 0.6s ease-in-out;
+            text-align: center;
+        }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        .logo {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
 
-.form-content h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 26px;
-    color: #333;
-    font-weight: 600;
-}
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.input-field {
-    margin-bottom: 20px;
-    position: relative;
-}
+        .form-content h2 {
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: #333;
+            font-weight: 600;
+        }
 
-.input-field label {
-    font-size: 14px;
-    color: #555;
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 500;
-}
+        .input-field {
+            margin-bottom: 20px;
+            position: relative;
+        }
 
-.input-field input {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: border-color 0.3s;
-}
+        .input-field label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
 
-.input-field input:focus {
-    border-color: #6d5bba;
-    outline: none;
-}
+        .input-field input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
 
-.button-container {
-    text-align: center;
-    margin-top: 10px;
-}
+        .input-field input:focus {
+            border-color: #6d5bba;
+            outline: none;
+        }
 
-.button-container button {
-    width: 100%;
-    background-color: #6d5bba;
-    color: #fff;
-    border: none;
-    padding: 12px 0;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: 500;
-}
+        .button-container button {
+            width: 100%;
+            background-color: #6d5bba;
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
 
-.button-container button:hover {
-    background-color: #5a4b9f;
-}
+        .button-container button:hover {
+            background-color: #5a4b9f;
+        }
 
-.bottom-link {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 14px;
-}
+        .bottom-link {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
 
-.bottom-link a {
-    color: #6d5bba;
-    text-decoration: none;
-    font-weight: 500;
-}
+        .bottom-link a {
+            color: #6d5bba;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-.bottom-link a:hover {
-    text-decoration: underline;
-}
+        .bottom-link a:hover {
+            text-decoration: underline;
+        }
 
-.error-message {
-    color: #d9534f;
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-}
+        .error-message {
+            color: #d9534f;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
 
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
-    font-size: 22px;
-    color: #888;
-    transition: color 0.3s ease;
-}
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 22px;
+            color: #888;
+            transition: color 0.3s ease;
+        }
 
-.close-btn:hover {
-    color: #444;
-}
+        .close-btn:hover {
+            color: #444;
+        }
 
     </style>
 </head>
 <body>
     <div class="form-popup">
         <?php
-            // Start session
             session_start();
-
             require_once 'connect.php';
-
             $error_message = '';
 
             if(isset($_POST['submit'])){
                 $fullname = $_POST['fullname'];
                 $password = $_POST['password'];
-
                 $sql = "SELECT * FROM admins WHERE fullname=?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("s", $fullname);
@@ -157,10 +153,8 @@ body {
                 if($result->num_rows == 1){
                     $row = $result->fetch_assoc();
                     if(password_verify($password, $row['password'])){
-                        // Store admin data in session variables
                         $_SESSION['admin_id'] = $row['id'];
                         $_SESSION['admin_name'] = $row['fullname'];
-                        // Redirect to admin panel
                         header("Location: adminpannel.php");
                         exit;
                     } else {
@@ -174,6 +168,10 @@ body {
                 $conn->close();
             }
         ?>
+        
+        <!-- Logo -->
+        <img src="logo.png" alt="Logo" class="logo">
+
         <span class="close-btn" onclick="window.location.href='admin_index.php'">&times;</span>
         <div class="form-content">
             <h2>Admin Login</h2>

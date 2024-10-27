@@ -28,6 +28,10 @@ $admin_name = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : '';
                 <a href="adminpannel.php" class="list-group-item list-group-item-action bg-transparent second-text active">
                     <i class="fa fa-home"></i>Dashboard</a> <!-- Add admin dashboard link -->
                 <br>
+                <br>
+                    <a href="admin_manage_orgs.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                    <i class="fa fa-users"></i>Manage Organizations</a>
+                    <br>
                 <a href="fetch_user.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                     <i class="fa fa-users"></i>Manage Users</a> <!-- Add link to manage users -->
                 <br>
@@ -48,6 +52,8 @@ $admin_name = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : '';
                 <br>
                 <a href="admin_logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold">
                     <i class="fa fa-sign-out"></i>Logout</a> <!-- Add admin logout link -->
+                   
+
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -85,39 +91,44 @@ $admin_name = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : '';
                 </div>
             </nav>
             <div class="container-fluid px-4">
-    <div class="row g-3 my-2">
-        <div class="col-md-3">
-            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <a href="fetch_application.php" class="btn btn-success">Job Applicants</a>
-            </div>
+            <div class="row g-3 my-2">
+    <div class="col-md-3">
+        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+            <a href="fetch_application.php" class="btn btn-success">Job Applicants</a>
         </div>
+    </div>
 
-        <div class="col-md-3">
-            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <a href="view_applicants.php" class="btn btn-warning">Attachment Applicants</a>
-            </div>
+    <div class="col-md-3">
+        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+            <a href="view_applicants.php" class="btn btn-warning">Attachment Applicants</a>
         </div>
+    </div>
 
-        <div class="col-md-3">
-            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <a href="fetch_approved.php" class="btn btn-info">Approved Applicants</a>
-            </div>
+    <div class="col-md-3">
+        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+            <a href="fetch_approved.php" class="btn btn-info">Approved Applicants</a>
         </div>
+    </div>
 
-        <div class="col-md-3">
-            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <a href="approve_payment.php" class="btn btn-warning">Premium Approval</a>
-            </div>
+    <div class="col-md-3">
+        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+            <a href="approve_payment.php" class="btn btn-warning">Premium Approval</a>
         </div>
+    </div>
 
-        <div class="col-md-3">
-            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <a href="attaches_approved.php" class="btn btn-danger">Approved Attaches</a>
-            </div>
+    <div class="col-md-3">
+        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+            <a href="attaches_approved.php" class="btn btn-danger">Approved Attaches</a>
+        </div>
+    </div>
+
+    <!-- New button for Manage Accounts -->
+    <div class="col-md-3">
+        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+            <a href="admin_manage_orgs.php" class="btn btn-primary">Manage Accounts</a>
         </div>
     </div>
 </div>
-
 
            
 

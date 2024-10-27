@@ -14,21 +14,9 @@ $org_id = $_SESSION['org_id'];
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Logic for handling payment, e.g., storing the payment details in the database
-
-    // Update subscription status to 'pending'
-    $query = "UPDATE organizations SET subscription_status = 'pending', subscription_payment_date = NOW() WHERE id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $org_id);
-
-    if ($stmt->execute()) {
-        // Redirect to subscription success page
-        header("Location: subscription_success.php");
-        exit();
-    } else {
-        echo "Error updating subscription: " . $stmt->error; // Error handling
-    }
-    $stmt->close();
+    // Redirect to the receipt upload page
+    header("Location: upload_receipt.php");
+    exit();
 }
 
 $conn->close(); // Close the database connection

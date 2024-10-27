@@ -57,28 +57,6 @@
       font-size: 32px;
     }
 
-    .buttons {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap; /* Allows the buttons to wrap to a new line if needed */
-    }
-
-    .buttons button {
-      padding: 12px 25px;
-      font-size: 16px;
-      color: white;
-      background-color: #007BFF;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .buttons button:hover {
-      background-color: #0056b3;
-    }
 
     .logo {
       position: absolute;
@@ -99,12 +77,78 @@
       <h2>Welcome,</h2><br><br>
       
       <div class="buttons">
-        <button onclick="location.href='register.php'">Register as user</button>
-        <button onclick="location.href='login.php'">Login as user</button>
-        <br>
-        <button onclick="location.href='register_organisation.php'">Register as Organisation</button>
-        <button onclick="location.href='login_organisation.php'">Login as Organisation</button>
-      </div>
+  <div class="row">
+    <button class="btn" onclick="location.href='register.php'">Register as User</button>
+    <button class="btn" onclick="location.href='login.php'">Login as User</button>
+  </div>
+  <div class="row">
+    <button class="btn" onclick="location.href='register_organisation.php'">Register as Organisation</button>
+    <button class="btn" onclick="location.href='login_organisation.php'">Login as Organisation</button>
+  </div>
+  <div class="row">
+    <button class="btn" onclick="location.href='admin.php'">Register as Admin</button>
+    <button class="btn" onclick="location.href='admin_login.php'">Login as Admin</button>
+  </div>
+</div>
+
+<style>
+  /* Main container for buttons */
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Space between rows */
+  }
+
+  /* Row container for each set of buttons */
+  .row {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between buttons in a row */
+  }
+
+  /* Button styling */
+  .btn {
+    width: 240px;
+    padding: 15px 25px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff; /* White text */
+    background-color: #3b82f6; /* Flat color blue */
+    border: none;
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Hover effect for buttons */
+  .btn:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+    transform: translateY(-4px); /* Lift button on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+  }
+
+  /* Button active state (pressed) */
+  .btn:active {
+    transform: translateY(2px); /* Press effect */
+    background-color: #1e40af; /* Even darker blue */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+  }
+
+  /* Responsive layout for smaller screens */
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+
     </div>
   </div>
 </body>

@@ -100,6 +100,8 @@ $org_id = $_SESSION['org_id'];
       </select>
 
       <button type="submit">Post Job</button>
+           <!-- Go Back Button -->
+           <button class="go-back" onclick="window.location.href='organisation_dashboard.php';">Go Back</button>
     </form>
   </div>
 </body>
